@@ -1,0 +1,19 @@
+{
+	"name": "wapi",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon App.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"qrcode-terminal": "^0.12.0",
+		"whatsapp-web.js": "github:pedroslopez/whatsapp-web.js#webpack-exodus",
+		"express": "^4.18.2",
+		"nodemon": "^3.0.3"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}
