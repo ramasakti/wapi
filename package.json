@@ -2,7 +2,7 @@
 	"name": "wapi",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "App.js",
 	"scripts": {
 		"start": "nodemon App.js",
 		"test": "echo \"Error: no test specified\" && exit 1"

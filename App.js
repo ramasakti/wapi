@@ -30,7 +30,7 @@ app.listen(8080, () => {
         
         if (clients[sessionId]) {
             console.log(`Session ${sessionId} already exists`);
-            return response(200, clients.qr, `Session ${sessionId} already exists`, res)
+            return response(200, clients.qr, `Session ${sessionId} already exists`, res);
         }
 
         console.log(`Registering session ${sessionId}`);
@@ -42,12 +42,12 @@ app.listen(8080, () => {
         client.on('qr', (qr) => {
             // qrcode.generate(qr, { small: true });
             console.log(`QR Code for session ${sessionId} generated`);
-            return response(200, qr, `QR Code for session ${sessionId}`, res)
+            return response(200, qr, `QR Code for session ${sessionId}`, res);
         });
 
         client.on('ready', () => {
             console.log(`The bot for session ${sessionId} is ready`);
-            return response(200, {}, `Session ${sessionId} registered and ready`, res)
+            return response(200, {}, `Session ${sessionId} registered and ready`, res);
         });
 
         client.on('authenticated', () => {
@@ -57,7 +57,7 @@ app.listen(8080, () => {
         client.on('auth_failure', (msg) => {
             console.error(`Auth failure for session ${sessionId}:`, msg);
             delete clients[sessionId];
-            return response(500, null, `Authentication failed for session ${sessionId}`, res)
+            return response(500, null, `Authentication failed for session ${sessionId}`, res);
         });
 
         client.on('disconnected', (reason) => {
@@ -76,7 +76,7 @@ app.listen(8080, () => {
 
             if (!client) {
                 console.log(`Session ${sessionId} not found`);
-                return res.status(400).send('Session not found');
+                return response(400, null, `Session not found`, res);
             }
 
             // Validate target phone number
@@ -89,10 +89,10 @@ app.listen(8080, () => {
 
             await client.sendMessage(formattedTarget + '@c.us', message);
             console.log(`Message sent to ${formattedTarget} from session ${sessionId}`);
-            res.status(200).send('Message sent');
+            return response(200, {}, `Message sent`, res);
         } catch (error) {
             console.error(error);
-            res.status(500).send('Failed to send message');
+            return response(500, null, `Failed to send message`, res);
         }
     });
 });
